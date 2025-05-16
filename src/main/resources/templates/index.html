@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spring Boot Boilerplate</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="jumbotron text-center">
+            <h1>Spring Boot Boilerplate</h1>
+            <p class="lead">A simple Spring Boot application to kickstart your projects</p>
+            <hr class="my-4">
+            <p>This boilerplate includes Spring Boot, Spring Data JPA, Thymeleaf, H2 Database, and Bootstrap.</p>
+            <div class="mt-4">
+                <a th:href="@{/items}" class="btn btn-primary btn-lg me-2">View Items</a>
+                <a href="/h2-console" class="btn btn-secondary btn-lg" target="_blank">H2 Console</a>
+            </div>
+        </div>
+        
+        <div class="row mt-5">
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">REST API</h5>
+                        <p class="card-text">Access the REST API at <code>/api/items</code></p>
+                        <a href="/api/items" class="btn btn-outline-primary" target="_blank">Try API</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Web Interface</h5>
+                        <p class="card-text">Access the web interface at <code>/items</code></p>
+                        <a th:href="@{/items}" class="btn btn-outline-primary">Open UI</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Database</h5>
+                        <p class="card-text">Access H2 Database at <code>/h2-console</code></p>
+                        <a href="/h2-console" class="btn btn-outline-primary" target="_blank">Open Console</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script th:src="@{/js/script.js}"></script>
+</body>
+</html>
