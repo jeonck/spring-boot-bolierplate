@@ -4,7 +4,7 @@ A minimal Spring Boot boilerplate project to kickstart your application developm
 
 ## Features
 
-- Spring Boot 3.2.0
+- Spring Boot 3.5.0
 - Spring Web MVC
 - Spring Data JPA
 - Thymeleaf templating
@@ -14,10 +14,11 @@ A minimal Spring Boot boilerplate project to kickstart your application developm
 - REST API endpoints
 - Web interface
 - Unit and integration tests
+- Java 21 Virtual Threads support
 
 ## Prerequisites
 
-- Java 17 or higher
+- Java 21 or higher
 - Maven 3.6+ or Gradle 7+
 
 ## Java Installation and Setup
@@ -30,21 +31,21 @@ A minimal Spring Boot boilerplate project to kickstart your application developm
 # Install Homebrew if not already installed
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-# Install OpenJDK 17
-brew install openjdk@17
+# Install OpenJDK 21
+brew install openjdk@21
 
 # Get the installed location (you'll need this for jenv later)
-ls -la /opt/homebrew/opt/openjdk@17
+ls -la /opt/homebrew/opt/openjdk@21
 ```
 
 The Homebrew installation will give you instructions on how to add the Java binary to your PATH. It typically looks like:
 
 ```bash
 # For intel Macs
-echo 'export PATH="/usr/local/opt/openjdk@17/bin:$PATH"' >> ~/.zshrc
+echo 'export PATH="/usr/local/opt/openjdk@21/bin:$PATH"' >> ~/.zshrc
 
 # For Apple Silicon Macs
-echo 'export PATH="/opt/homebrew/opt/openjdk@17/bin:$PATH"' >> ~/.zshrc
+echo 'export PATH="/opt/homebrew/opt/openjdk@21/bin:$PATH"' >> ~/.zshrc
 ```
 
 #### On Ubuntu/Debian
@@ -56,27 +57,27 @@ sudo apt install -y software-properties-common
 sudo add-apt-repository ppa:openjdk-r/ppa
 sudo apt update
 
-# Install OpenJDK 17
-sudo apt install -y openjdk-17-jdk
+# Install OpenJDK 21
+sudo apt install -y openjdk-21-jdk
 
 # Verify installation
 java -version
 
 # Find Java installation path (for jenv)
 update-alternatives --list java
-# Example output: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# Example output: /usr/lib/jvm/java-21-openjdk-amd64/bin/java
 ```
 
 #### On Windows
 
-1. Download OpenJDK or Oracle JDK 17 from their official websites
+1. Download OpenJDK or Oracle JDK 21 from their official websites
 2. Run the installer and follow the installation wizard
 3. Set the JAVA_HOME environment variable:
    - Right-click on 'This PC' or 'My Computer' > Properties > Advanced system settings > Environment Variables
-   - Add a new system variable named `JAVA_HOME` with the path to your JDK (e.g., `C:\Program Files\Java\jdk-17`)
+   - Add a new system variable named `JAVA_HOME` with the path to your JDK (e.g., `C:\Program Files\Java\jdk-21`)
    - Edit the `Path` variable and add `%JAVA_HOME%\bin`
 4. Verify installation by opening Command Prompt and typing `java -version`
-5. Note the installation path for jenv setup (e.g., `C:\Program Files\Java\jdk-17`)
+5. Note the installation path for jenv setup (e.g., `C:\Program Files\Java\jdk-21`)
 
 ### Using jenv to Manage Multiple Java Versions
 
@@ -127,8 +128,8 @@ Before adding Java to jenv, you need to locate your Java installations:
 /usr/libexec/java_home -V
 
 # On macOS with Homebrew (specific installation paths)
-ls -la /opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home  # Apple Silicon Mac
-ls -la /usr/local/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home     # Intel Mac
+ls -la /opt/homebrew/opt/openjdk@21/libexec/openjdk.jdk/Contents/Home  # Apple Silicon Mac
+ls -la /usr/local/opt/openjdk@21/libexec/openjdk.jdk/Contents/Home     # Intel Mac
 
 # On Linux
 update-alternatives --list java   # Shows the Java executable
@@ -144,16 +145,16 @@ Once you've found the Java home directory (not just the bin directory), add it t
 
 ```bash
 # Common macOS Homebrew path (Apple Silicon)
-jenv add /opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home
+jenv add /opt/homebrew/opt/openjdk@21/libexec/openjdk.jdk/Contents/Home
 
 # Common macOS Homebrew path (Intel)
-jenv add /usr/local/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home
+jenv add /usr/local/opt/openjdk@21/libexec/openjdk.jdk/Contents/Home
 
 # Common Linux path
-jenv add /usr/lib/jvm/java-17-openjdk-amd64
+jenv add /usr/lib/jvm/java-21-openjdk-amd64
 
 # Common Windows path (using WSL or Git Bash)
-jenv add /c/Program\ Files/Java/jdk-17
+jenv add /c/Program\ Files/Java/jdk-21
 ```
 
 #### Managing Java Versions with jenv
@@ -163,11 +164,11 @@ jenv add /c/Program\ Files/Java/jdk-17
 jenv versions
 
 # Set a global Java version
-jenv global 17.0
+jenv global 21.0
 
 # Set a local version for this project
 cd /path/to/spring-boot-boilerplate
-jenv local 17.0
+jenv local 21.0
 
 # Verify the active Java version
 jenv version
@@ -280,6 +281,21 @@ Run tests using Maven:
 mvn test
 ```
 
+## What's New in Spring Boot 3.5.0 and Java 21
+
+### Spring Boot 3.5.0 Features
+- **Enhanced Virtual Threads Support**: Full optimization for Java 21's lightweight threading model
+- **Improved Observability**: Better integration with Micrometer and OpenTelemetry
+- **Performance Enhancements**: Faster startup times and reduced memory footprint
+- **Updated Dependencies**: Latest versions of Spring Framework 6.2.7, Spring Security 6.5.0, and Hibernate
+- **Better Cloud-Native Support**: Enhanced Kubernetes and Docker integration
+
+### Java 21 Benefits
+- **Virtual Threads (Project Loom)**: Handle thousands of concurrent tasks with minimal overhead
+- **Pattern Matching**: Simplified switch statements and record patterns
+- **Improved Z Garbage Collector**: Better memory management and reduced latency
+- **Performance Improvements**: Overall runtime optimizations
+
 ## Troubleshooting Common Issues
 
 ### Java Version Issues
@@ -291,7 +307,7 @@ If you encounter errors related to Java version:
 java -version
 
 # If using jenv, make sure the correct version is set
-jenv local 17.0
+jenv local 21.0
 jenv doctor
 
 # Verify Maven is using the correct Java version
@@ -316,7 +332,7 @@ exec $SHELL -l
 jenv doctor
 
 # Manually fix path issues
-jenv shell 17.0
+jenv shell 21.0
 echo $JAVA_HOME
 ```
 
@@ -326,11 +342,11 @@ If you install Java via Homebrew but face issues:
 
 ```bash
 # Full path to Homebrew OpenJDK executables:
-/opt/homebrew/opt/openjdk@17/bin/java  # Apple Silicon Mac
-/usr/local/opt/openjdk@17/bin/java     # Intel Mac
+/opt/homebrew/opt/openjdk@21/bin/java  # Apple Silicon Mac
+/usr/local/opt/openjdk@21/bin/java     # Intel Mac
 
 # Force relinking
-brew link --force openjdk@17
+brew link --force openjdk@21
 ```
 
 ### Maven Build Issues
@@ -352,8 +368,43 @@ If the application fails to start:
 1. Check the console for error messages
 2. Verify the application.properties file has correct configurations
 3. Make sure the required ports (8080 by default) are available
+4. Ensure you're using Java 21 or higher
+
+### Virtual Threads Configuration
+
+To enable virtual threads in your application, add this to your `application.properties`:
+
+```properties
+# Enable virtual threads (available in Java 21+)
+spring.threads.virtual.enabled=true
+```
+
+## Performance Tips
+
+### Utilizing Virtual Threads
+
+Virtual threads are automatically used for web requests in Spring Boot 3.5.0 with Java 21. For custom async operations:
+
+```java
+@Async
+public CompletableFuture<String> asyncOperation() {
+    // This will run on virtual threads
+    return CompletableFuture.completedFuture("result");
+}
+```
+
+### Memory Optimization
+
+With Java 21's improved garbage collection:
+
+```properties
+# JVM options for optimal performance
+-XX:+UseZGC
+-XX:+UnlockExperimentalVMOptions
+```
 
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
+
 # spring-boot-bolierplate
